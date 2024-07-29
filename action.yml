@@ -20,7 +20,7 @@ runs:
       id: archive
       run: |
         echo $(pwd)
-        ..
+        cd ..
         ls -la
         cp -r . ./preparation/${GITHUB_REPOSITORY#*/}
       shell: bash

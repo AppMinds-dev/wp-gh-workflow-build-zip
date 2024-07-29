@@ -18,7 +18,9 @@ runs:
 
     - name: Generate zip archive
       id: archive
-      run: zip -r "${GITHUB_WORKSPACE}/${GITHUB_REPOSITORY#*/}.zip" .
+      run: |
+        mv . ./${GITHUB_REPOSITORY#*/}
+        zip -r "${GITHUB_WORKSPACE}/${GITHUB_REPOSITORY#*/}.zip" .
       shell: bash
 
     - name: Unzip the archive (prevents double zip problem)

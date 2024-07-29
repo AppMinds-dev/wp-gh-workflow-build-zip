@@ -44,9 +44,8 @@ runs:
         path: zipfile
         retention-days: ${{ inputs.retention-days }}
 
-    - name: Output artifact download URL
-      id: output-artifact-download-url
+    - name: Output artifact URL
+      id: output-artifact-url
       run: |
-        # echo "::set-output name=artifact-url::${GITHUB_WORKSPACE}/${{ inputs.slug }}.zip" >> "${GITHUB_OUTPUT}"
-        echo "artifact-url=${GITHUB_WORKSPACE}/${{ inputs.slug }}.zip" >> "${GITHUB_OUTPUT}"
+        echo "::set-output name=artifact-url::${{ steps.upload-plugin-artifact.outputs.artifact-url }}"
       shell: bash

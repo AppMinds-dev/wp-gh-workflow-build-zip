@@ -21,10 +21,8 @@ runs:
       run: |
         echo $(pwd)
         cd ..
-        ls -la
-        cp -r . ./preparation/${GITHUB_REPOSITORY#*/}
+        zip -r "${GITHUB_WORKSPACE}/${GITHUB_REPOSITORY#*/}.zip" .
       shell: bash
-        # zip -r "${GITHUB_WORKSPACE}/${GITHUB_REPOSITORY#*/}.zip" ./preparation
 
     - name: Unzip the archive (prevents double zip problem)
       id: unzip

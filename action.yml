@@ -11,9 +11,14 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    # - name: Generate zip archive
+    #   id: archive
+    #   run: sudo ${{ github.action_path }}/build-zip.sh
+    #   shell: bash
+
     - name: Generate zip archive
       id: archive
-      run: sudo ${{ github.action_path }}/build-zip.sh
+      run: zip -r "${GITHUB_WORKSPACE}/${GITHUB_REPOSITORY#*/}.zip" .
       shell: bash
 
     - name: Unzip the archive (prevents double zip problem)

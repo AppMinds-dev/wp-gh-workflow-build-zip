@@ -38,3 +38,9 @@ runs:
         name: ${{ inputs.slug }}
         path: zipfile
         retention-days: ${{ inputs.retention-days }}
+
+    - name: Output artifact download URL
+      id: output-artifact-download-url
+      run: |
+        echo "zip-path=${GITHUB_WORKSPACE}/${{ inputs.slug }}.zip" >> "${GITHUB_OUTPUT}"
+      shell: bash

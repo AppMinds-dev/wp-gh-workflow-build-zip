@@ -12,7 +12,7 @@ inputs:
     default: 5
   slug:
     description: 'Name of the zip archive'
-    default: ${{ github.event.repository.name }}
+    default: ${GITHUB_REPOSITORY#*/}
 
 runs:
   using: 'composite'
@@ -20,20 +20,20 @@ runs:
     - name: Generate zip archive
       id: archive
       run: |
-        echo ${{ github.event.inputs.slug }}
+        echo ${{ inputs.slug }}
         cd ..
-        zip -r "${{ github.event.repository.workspace }}/${{ github.event.inputs.slug }}.zip" .
+        zip -r "${GITHUB_WORKSPACE}/${{ inputs.slug }}.zip" .
       shell: bash
 
     - name: Unzip the archive (prevents double zip problem)
       id: unzip
-      run: unzip ${{ github.event.inputs.slug }}.zip -d zipfile
+      run: unzip ${{ inputs.slug }}.zip -d zipfile
       shell: bash
 
     - name: Upload the archive as an artifact
       id: upload-plugin-artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ github.event.repository.name }}
+        name: ${{ inputs.slug }}
         path: zipfile
-        retention-days: ${{ github.event.inputs.retention-days }}
+        retention-days: ${{ inputs.retention-days }}

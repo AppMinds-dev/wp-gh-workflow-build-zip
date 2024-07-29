@@ -13,7 +13,7 @@ runs:
   steps:
     - name: Generate zip archive
       id: archive
-      run: ${{ github.action_path }}/build-zip.sh
+      run: sudo ${{ github.action_path }}/build-zip.sh
       shell: bash
 
     - name: Unzip the archive (prevents double zip problem)
@@ -28,4 +28,3 @@ runs:
         name: ${{ github.event.repository.name }}
         path: zipfile
         retention-days: ${{ inputs.retention-days }}
-        

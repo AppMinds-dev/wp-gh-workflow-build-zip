@@ -1,27 +1,27 @@
 name: 'WordPress Plugin Build Zip'
 description: 'Github workflow for building Wordpress plugin and theme zip'
 author: 'Manuel Bachl | AppMinds.dev'
+
 branding:
   icon: 'archive'
   color: 'blue'
+
 inputs:
   retention-days:
     description: 'How many days to keep the zip archive'
     default: 5
+  slug:
+    description: 'Name of the zip archive'
+    default: ${GITHUB_REPOSITORY#*/}
+
 runs:
   using: 'composite'
   steps:
-    # - name: Generate zip archive
-    #   id: archive
-    #   run: sudo ${{ github.action_path }}/build-zip.sh
-    #   shell: bash
-
     - name: Generate zip archive
       id: archive
       run: |
-        echo $(pwd)
         cd ..
-        zip -r "${GITHUB_WORKSPACE}/${GITHUB_REPOSITORY#*/}.zip" .
+        zip -r "${GITHUB_WORKSPACE}/${inputs.slug}.zip" .
       shell: bash
 
     - name: Unzip the archive (prevents double zip problem)

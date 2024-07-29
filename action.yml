@@ -47,8 +47,5 @@ runs:
     - name: Output artifact URL
       id: output-artifact-url
       run: |
-        echo "Artifact URL is: ${{ steps.upload-plugin-artifact.outputs.artifact-url }}"
-        echo "Artifact ID is: ${{ steps.upload-plugin-artifact.outputs.artifact-id }}"
         echo "artifact-url=${{ steps.upload-plugin-artifact.outputs.artifact-url }}" >> "${GITHUB_OUTPUT}"
-        echo "artifact-id=${{ steps.upload-plugin-artifact.outputs.artifact-id }}" >> "${GITHUB_OUTPUT}"
       shell: bash

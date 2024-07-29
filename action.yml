@@ -21,7 +21,7 @@ runs:
       id: archive
       run: |
         cd ..
-        zip -r "${GITHUB_WORKSPACE}/${inputs.slug}.zip" .
+        zip -r "${GITHUB_WORKSPACE}/${{ inputs.slug }}.zip" .
       shell: bash
 
     - name: Unzip the archive (prevents double zip problem)

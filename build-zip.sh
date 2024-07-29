@@ -4,6 +4,7 @@
 # because if the grep later doesn't match any deleted files,
 # which is likely the majority case,
 # it does not exit with a 0, and we only care about the final exit.
+
 set -eo
 
 # Allow some ENV variables to be customized

@@ -9,8 +9,9 @@ branding:
 inputs:
   retention-days:
     description: 'How many days to keep the zip archive'
-    default: 5
+    default: '5'
   slug:
+    required: false
     description: 'Name of the zip archive'
     default: ${GITHUB_REPOSITORY#*/}
 

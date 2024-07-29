@@ -19,7 +19,7 @@ runs:
     - name: Generate zip archive
       id: archive
       run: |
-        cp . ./preparation/${GITHUB_REPOSITORY#*/}
+        cp -r . ./preparation/${GITHUB_REPOSITORY#*/}
         zip -r "${GITHUB_WORKSPACE}/${GITHUB_REPOSITORY#*/}.zip" ./preparation
       shell: bash
 

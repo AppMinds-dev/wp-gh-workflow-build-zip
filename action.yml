@@ -47,5 +47,6 @@ runs:
     - name: Output artifact URL
       id: output-artifact-url
       run: |
+        echo "${{ steps.upload-plugin-artifact.outputs.artifact-url }}"
         echo "artifact-url=${{ steps.upload-plugin-artifact.outputs.artifact-url }}" >> "${GITHUB_OUTPUT}"
       shell: bash

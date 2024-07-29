@@ -18,7 +18,7 @@ inputs:
 outputs:
   artifact-url:
     description: 'Path to the zip archive'
-    value: ''
+    value: ${{ steps.upload-plugin-artifact.outputs.artifact-url }}
 
 runs:
   using: 'composite'
@@ -43,9 +43,3 @@ runs:
         name: ${{ inputs.slug }}
         path: zipfile
         retention-days: ${{ inputs.retention-days }}
-
-    - name: Output artifact URL
-      id: output-artifact-url
-      run: |
-        echo "artifact-url=${{ steps.upload-plugin-artifact.outputs.artifact-url }}" >> "${GITHUB_OUTPUT}"
-      shell: bash

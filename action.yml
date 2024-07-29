@@ -15,6 +15,11 @@ inputs:
     description: 'Name of the zip archive'
     default: ${GITHUB_REPOSITORY#*/}
 
+outputs:
+  artifact-url:
+    description: 'Path to the zip archive'
+    value: ''
+
 runs:
   using: 'composite'
   steps:
@@ -42,5 +47,6 @@ runs:
     - name: Output artifact download URL
       id: output-artifact-download-url
       run: |
-        echo "zip-path=${GITHUB_WORKSPACE}/${{ inputs.slug }}.zip" >> "${GITHUB_OUTPUT}"
+        echo "::set-output name=artifact-url::${GITHUB_WORKSPACE}/${{ inputs.slug }}.zip" >> "${GITHUB_OUTPUT}"
       shell: bash
+        # echo "artifact-url=${GITHUB_WORKSPACE}/${{ inputs.slug }}.zip" >> "${GITHUB_OUTPUT}"

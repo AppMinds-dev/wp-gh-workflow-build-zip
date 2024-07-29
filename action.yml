@@ -47,6 +47,6 @@ runs:
     - name: Output artifact download URL
       id: output-artifact-download-url
       run: |
-        echo "::set-output name=artifact-url::${GITHUB_WORKSPACE}/${{ inputs.slug }}.zip" >> "${GITHUB_OUTPUT}"
+        # echo "::set-output name=artifact-url::${GITHUB_WORKSPACE}/${{ inputs.slug }}.zip" >> "${GITHUB_OUTPUT}"
+        echo "artifact-url=${GITHUB_WORKSPACE}/${{ inputs.slug }}.zip" >> "${GITHUB_OUTPUT}"
       shell: bash
-        # echo "artifact-url=${GITHUB_WORKSPACE}/${{ inputs.slug }}.zip" >> "${GITHUB_OUTPUT}"
